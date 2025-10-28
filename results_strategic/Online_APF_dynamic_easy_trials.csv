@@ -1,0 +1,4 @@
+mode,scenario,difficulty,trial_id,success,collision,steps,path_length,path_smoothness,min_clearance,planning_cpu_time,num_obstacles
+Online_APF,dynamic,easy,0,True,False,92,11.403919667218258,0.8358564984494622,0.8698571394067475,0.006606101989746094,2
+Online_APF,dynamic,easy,1,True,False,92,11.403919667218258,0.8358564984494622,0.8698571394067475,0.004444599151611328,2
+Online_APF,dynamic,easy,2,True,False,92,11.403919667218258,0.8358564984494622,0.8698571394067475,0.004920005798339844,2

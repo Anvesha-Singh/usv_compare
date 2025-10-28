@@ -1,0 +1,175 @@
+================================================================================
+COMPREHENSIVE MARITIME PATH PLANNING COMPARISON
+Three Modes: Online APF vs Offline AEGAfi vs Hybrid
+Generated: 2025-10-29 02:04:15
+================================================================================
+
+
+================================================================================
+SCENARIO: CHANNEL
+================================================================================
+
+Online_APF:
+------------------------------------------------------------
+  Success Rate:          100.0%
+  Collision Rate:        0.0%
+  Avg Path Length:       11.402m (±0.000)
+  Avg Path Smoothness:   0.551 rad (±0.000)
+  Avg Planning Time:     0.0034s (±0.0013)
+  Avg Min Clearance:     1.750m (±0.000)
+  Avg Steps:             92.0 (±0.0)
+
+Offline_AEGAfi:
+------------------------------------------------------------
+  Success Rate:          100.0%
+  Collision Rate:        0.0%
+  Avg Path Length:       11.517m (±0.006)
+  Avg Path Smoothness:   0.716 rad (±0.089)
+  Avg Planning Time:     20.0434s (±0.0355)
+  Avg Execution Time:    0.0013s (±0.0004)
+  Avg Total Time:        20.0447s (±0.0356)
+  Avg Min Clearance:     1.543m (±0.139)
+  Avg Steps:             87.0 (±0.0)
+
+Hybrid:
+------------------------------------------------------------
+  Success Rate:          100.0%
+  Collision Rate:        0.0%
+  Avg Path Length:       11.417m (±0.014)
+  Avg Path Smoothness:   0.776 rad (±0.148)
+  Avg Planning Time:     20.0554s (±0.0394)
+  Avg Execution Time:    0.0036s (±0.0012)
+  Avg Total Time:        20.0590s (±0.0397)
+  Avg Min Clearance:     1.569m (±0.128)
+  Avg Steps:             99.6 (±8.7)
+
+
+================================================================================
+SCENARIO: CLUTTER
+================================================================================
+
+Online_APF:
+------------------------------------------------------------
+  Success Rate:          100.0%
+  Collision Rate:        0.0%
+  Avg Path Length:       11.661m (±0.000)
+  Avg Path Smoothness:   2.811 rad (±0.000)
+  Avg Planning Time:     0.0030s (±0.0010)
+  Avg Min Clearance:     0.522m (±0.000)
+  Avg Steps:             98.0 (±0.0)
+
+Offline_AEGAfi:
+------------------------------------------------------------
+  Success Rate:          100.0%
+  Collision Rate:        0.0%
+  Avg Path Length:       12.270m (±0.000)
+  Avg Path Smoothness:   1.842 rad (±0.000)
+  Avg Planning Time:     11.8918s (±1.1770)
+  Avg Execution Time:    0.0013s (±0.0004)
+  Avg Total Time:        11.8930s (±1.1773)
+  Avg Min Clearance:     0.392m (±0.000)
+  Avg Steps:             92.0 (±0.0)
+
+Hybrid:
+------------------------------------------------------------
+  Success Rate:          100.0%
+  Collision Rate:        0.0%
+  Avg Path Length:       12.948m (±0.000)
+  Avg Path Smoothness:   4.138 rad (±0.000)
+  Avg Planning Time:     11.2659s (±0.5365)
+  Avg Execution Time:    0.0032s (±0.0008)
+  Avg Total Time:        11.2691s (±0.5364)
+  Avg Min Clearance:     0.409m (±0.000)
+  Avg Steps:             109.0 (±0.0)
+
+
+================================================================================
+SCENARIO: DYNAMIC
+================================================================================
+
+Online_APF:
+------------------------------------------------------------
+  Success Rate:          100.0%
+  Collision Rate:        0.0%
+  Avg Path Length:       11.404m (±0.000)
+  Avg Path Smoothness:   0.836 rad (±0.000)
+  Avg Planning Time:     0.0019s (±0.0006)
+  Avg Min Clearance:     0.870m (±0.000)
+  Avg Steps:             92.0 (±0.0)
+
+Offline_AEGAfi:
+------------------------------------------------------------
+  Success Rate:          100.0%
+  Collision Rate:        0.0%
+  Avg Path Length:       11.519m (±0.004)
+  Avg Path Smoothness:   0.665 rad (±0.109)
+  Avg Planning Time:     4.5443s (±0.3585)
+  Avg Execution Time:    0.0018s (±0.0007)
+  Avg Total Time:        4.5461s (±0.3586)
+  Avg Min Clearance:     0.904m (±0.194)
+  Avg Steps:             87.0 (±0.0)
+
+Hybrid:
+------------------------------------------------------------
+  Success Rate:          100.0%
+  Collision Rate:        0.0%
+  Avg Path Length:       11.428m (±0.018)
+  Avg Path Smoothness:   1.301 rad (±0.231)
+  Avg Planning Time:     4.4924s (±0.2204)
+  Avg Execution Time:    0.0033s (±0.0014)
+  Avg Total Time:        4.4957s (±0.2207)
+  Avg Min Clearance:     0.837m (±0.094)
+  Avg Steps:             97.9 (±4.9)
+
+
+================================================================================
+SCENARIO: OPEN
+================================================================================
+
+Online_APF:
+------------------------------------------------------------
+  Success Rate:          100.0%
+  Collision Rate:        0.0%
+  Avg Path Length:       11.453m (±0.000)
+  Avg Path Smoothness:   1.091 rad (±0.000)
+  Avg Planning Time:     0.0024s (±0.0006)
+  Avg Min Clearance:     0.398m (±0.000)
+  Avg Steps:             92.0 (±0.0)
+
+Offline_AEGAfi:
+------------------------------------------------------------
+  Success Rate:          100.0%
+  Collision Rate:        0.0%
+  Avg Path Length:       11.513m (±0.023)
+  Avg Path Smoothness:   0.765 rad (±0.079)
+  Avg Planning Time:     3.9919s (±0.2606)
+  Avg Execution Time:    0.0012s (±0.0003)
+  Avg Total Time:        3.9930s (±0.2608)
+  Avg Min Clearance:     0.504m (±0.058)
+  Avg Steps:             87.2 (±0.4)
+
+Hybrid:
+------------------------------------------------------------
+  Success Rate:          100.0%
+  Collision Rate:        0.0%
+  Avg Path Length:       11.548m (±0.036)
+  Avg Path Smoothness:   1.835 rad (±0.190)
+  Avg Planning Time:     3.9555s (±0.2114)
+  Avg Execution Time:    0.0025s (±0.0011)
+  Avg Total Time:        3.9580s (±0.2112)
+  Avg Min Clearance:     0.607m (±0.105)
+  Avg Steps:             96.4 (±3.9)
+
+
+================================================================================
+SUMMARY COMPARISON TABLE
+================================================================================
+
+Success Rates by Scenario and Mode:
+--------------------------------------------------------------------------------
+Scenario        Online APF      Offline AEGAfi       Hybrid         
+--------------------------------------------------------------------------------
+channel          100.0%          100.0%               100.0%        
+clutter          100.0%          100.0%               100.0%        
+dynamic          100.0%          100.0%               100.0%        
+open             100.0%          100.0%               100.0%        

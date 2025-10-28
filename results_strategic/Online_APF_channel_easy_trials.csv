@@ -1,0 +1,4 @@
+mode,scenario,difficulty,trial_id,success,collision,steps,path_length,path_smoothness,min_clearance,planning_cpu_time,num_obstacles
+Online_APF,channel,easy,0,True,False,92,11.401500000000004,0.5508788917024438,2.2500020479991614,0.0037102699279785156,40
+Online_APF,channel,easy,1,True,False,92,11.401500000000004,0.5508788917024438,2.2500020479991614,0.0053005218505859375,40
+Online_APF,channel,easy,2,True,False,92,11.401500000000004,0.5508788917024438,2.2500020479991614,0.0039920806884765625,40

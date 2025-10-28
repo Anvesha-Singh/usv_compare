@@ -1,0 +1,4 @@
+mode,scenario,difficulty,trial_id,success,collision,steps,path_length,path_smoothness,min_clearance,planning_cpu_time,execution_cpu_time,num_obstacles
+Offline_AEGAfi,dynamic,easy,0,True,False,87,11.52,0.5649284411913945,0.9314854060748007,4.045132875442505,0.0018520355224609375,2
+Offline_AEGAfi,dynamic,easy,1,True,False,87,11.519999999999994,0.5216348565493208,0.8607615106026104,3.896170139312744,0.001077413558959961,2
+Offline_AEGAfi,dynamic,easy,2,True,False,87,11.52,0.650769178845207,1.0050871630787857,3.8922219276428223,0.001950979232788086,2
