@@ -46,6 +46,17 @@ class DynamicObstacle(Obstacle):
         self.x += self.vx * dt
         self.y += self.vy * dt
 
+    def get_speed(self) -> float:
+        """Get the obstacle's current speed"""
+        return math.hypot(self.vx, self.vy)
+
+    def get_heading(self) -> float:
+        """Get the obstacle's current heading in radians"""
+        speed = self.get_speed()
+        if speed < 1e-4:  # Avoid atan2(0, 0)
+            return 0.0
+        return math.atan2(self.vy, self.vx)
+
     def __repr__(self):
         return f"DynamicObstacle({self.x:.2f}, {self.y:.2f}, r={self.r:.2f}, v=({self.vx:.2f},{self.vy:.2f}))"
 

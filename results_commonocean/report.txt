@@ -1,0 +1,23 @@
+================================================================================
+COMMONOCEAN MARITIME PATH PLANNING WITH COLREGS REPORT
+Generated: 2025-10-29 10:26:44
+================================================================================
+
+Algorithm: Improved APF with COLREGs Compliance
+Benchmarks: CommonOcean (with dynamic vessels and COLREGs checking)
+
+Scenario: USA_MEC-1_20190115_T-13
+------------------------------------------------------------
+  Success Rate: 100.0% (10/10)
+  Collision Rate: 0.0%
+  Avg Path Length (successful): 16.42m
+  COLREGs Corrections Applied: 20.0
+  COLREGs Violations Detected: 0.0
+
+Scenario: USA_NYM-1_20190613_T-1
+------------------------------------------------------------
+  Success Rate: 100.0% (10/10)
+  Collision Rate: 0.0%
+  Avg Path Length (successful): 19.41m
+  COLREGs Corrections Applied: 7.0
+  COLREGs Violations Detected: 21.0
