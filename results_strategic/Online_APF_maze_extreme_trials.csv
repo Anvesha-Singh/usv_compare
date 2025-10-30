@@ -1,4 +1,0 @@
-mode,scenario,difficulty,trial_id,success,collision,steps,path_length,path_smoothness,min_clearance,planning_cpu_time,num_obstacles
-Online_APF,maze,extreme,0,False,True,31,3.168,0.7532622360317082,0.038953314850897536,0.0018267631530761719,39
-Online_APF,maze,extreme,1,False,True,31,3.168,0.7532622360317082,0.038953314850897536,0.0016102790832519531,39
-Online_APF,maze,extreme,2,False,True,31,3.168,0.7532622360317082,0.038953314850897536,0.0015914440155029297,39

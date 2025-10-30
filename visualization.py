@@ -1,4 +1,4 @@
-# visualization.py - ENHANCED WITH METRICS
+# visualization.py - ENHANCED WITH METRICS AND COLREGS
 
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
@@ -9,7 +9,7 @@ import math
 import time
 
 class SimulationVisualizer:
-    """Visualize maritime path planning simulations with collision detection and metrics"""
+    """Visualize maritime path planning simulations with collision detection, metrics, and COLREGs compliance"""
 
     def __init__(self, figsize=(14, 9)):
         self.figsize = figsize
@@ -28,8 +28,9 @@ class SimulationVisualizer:
                           start: Tuple[float, float],
                           goal: Tuple[float, float],
                           planning_time: float = 0.0,
-                          steps: int = 0) -> Dict:
-        """Calculate trajectory metrics"""
+                          steps: int = 0,
+                          colregs_data: Optional[Dict] = None) -> Dict:
+        """Calculate trajectory metrics including COLREGs"""
         metrics = {}
 
         # Path length
@@ -62,6 +63,16 @@ class SimulationVisualizer:
         metrics['planning_time'] = planning_time
         metrics['steps'] = steps
 
+        # COLREGs metrics
+        if colregs_data:
+            metrics['colregs_encounters'] = colregs_data.get('total_encounters', 0)
+            metrics['colregs_violations'] = colregs_data.get('violations', 0)
+            metrics['colregs_compliant'] = colregs_data.get('compliant', True)
+        else:
+            metrics['colregs_encounters'] = 0
+            metrics['colregs_violations'] = 0
+            metrics['colregs_compliant'] = True
+
         return metrics
 
     def plot_scenario(self, start: Tuple[float, float], 
@@ -73,15 +84,16 @@ class SimulationVisualizer:
                      save_path: Optional[str] = None,
                      planning_time: float = 0.0,
                      steps: int = 0,
-                     show_metrics: bool = True):
+                     show_metrics: bool = True,
+                     colregs_data: Optional[Dict] = None):
         """
-        Plot scenario with trajectory and metrics displayed on plot
+        Plot scenario with trajectory, metrics, and COLREGs compliance
         """
         if dynamic_obs is None:
             dynamic_obs = []
 
         # Calculate metrics
-        metrics = self._calculate_metrics(trajectory or [], start, goal, planning_time, steps)
+        metrics = self._calculate_metrics(trajectory or [], start, goal, planning_time, steps, colregs_data)
 
         fig, ax = plt.subplots(figsize=self.figsize)
 
@@ -117,7 +129,6 @@ class SimulationVisualizer:
         collision_detected = False
         collision_idx = -1
         collision_color = 'blue'
-        status_text = "SUCCESS"
 
         if trajectory and len(trajectory) > 1:
             all_obs = static_obs + dynamic_obs
@@ -126,6 +137,8 @@ class SimulationVisualizer:
             if collision_detected:
                 collision_color = 'red'
                 status_text = f"COLLISION (Step {collision_idx})"
+            elif not metrics['colregs_compliant']:
+                status_text = f"SUCCESS (COLREGs: {metrics['colregs_violations']} violations)"
 
             if collision_detected:
                 # Split trajectory at collision
@@ -164,7 +177,7 @@ class SimulationVisualizer:
 
         ax.set_xlabel('X Position (m)', fontsize=12, fontweight='bold')
         ax.set_ylabel('Y Position (m)', fontsize=12, fontweight='bold')
-        ax.set_title(f"{title} - {status_text}", fontsize=14, fontweight='bold')
+        ax.set_title(f"{title}", fontsize=14, fontweight='bold')
         ax.grid(True, alpha=0.3)
         ax.legend(loc='upper right', fontsize=10)
         ax.set_aspect('equal')
@@ -200,7 +213,7 @@ class SimulationVisualizer:
         return fig, ax
 
     def _format_metrics_text(self, metrics: Dict) -> str:
-        """Format metrics for display"""
+        """Format metrics for display including COLREGs"""
         text = "━━━ METRICS ━━━\n"
         text += f"Path Length:    {metrics['path_length']:.2f} m\n"
         text += f"Straight Line:  {metrics['straight_line']:.2f} m\n"
@@ -210,6 +223,16 @@ class SimulationVisualizer:
             text += f"Planning Time:  {metrics['planning_time']:.3f} s\n"
         if metrics['steps'] > 0:
             text += f"Steps Taken:    {metrics['steps']}\n"
+
+        # COLREGs metrics
+        text += f"\n━━━ COLREGs ━━━\n"
+        text += f"Encounters:     {metrics['colregs_encounters']}\n"
+        text += f"Violations:     {metrics['colregs_violations']}\n"
+        if metrics['colregs_compliant']:
+            text += f"Status:         ✓ COMPLIANT"
+        else:
+            text += f"Status:         ✗ NON-COMPLIANT"
+
         return text
 
     def plot_comparison(self, scenario_name: str, difficulty: str,
@@ -223,9 +246,11 @@ class SimulationVisualizer:
                        ga_time: float = 0.0,
                        apf_steps: int = 0,
                        ga_steps: int = 0,
+                       apf_colregs: Optional[Dict] = None,
+                       ga_colregs: Optional[Dict] = None,
                        save_path: Optional[str] = None):
         """
-        Plot side-by-side comparison with metrics
+        Plot side-by-side comparison with metrics and COLREGs compliance
         """
         fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(18, 8))
 
@@ -234,8 +259,8 @@ class SimulationVisualizer:
         ga_collision, ga_collision_idx = self._check_collision_points(ga_trajectory, all_obs)
 
         # Calculate metrics for both
-        apf_metrics = self._calculate_metrics(apf_trajectory, start, goal, apf_time, apf_steps)
-        ga_metrics = self._calculate_metrics(ga_trajectory, start, goal, ga_time, ga_steps)
+        apf_metrics = self._calculate_metrics(apf_trajectory, start, goal, apf_time, apf_steps, apf_colregs)
+        ga_metrics = self._calculate_metrics(ga_trajectory, start, goal, ga_time, ga_steps, ga_colregs)
 
         for ax, trajectory, method, color, collision, collision_idx, metrics in [
             (ax1, apf_trajectory, 'Online APF', 'blue', apf_collision, apf_collision_idx, apf_metrics),
@@ -278,6 +303,9 @@ class SimulationVisualizer:
                     ax.plot(traj_x, traj_y, color=color, linewidth=2.5, alpha=0.9)
 
             status = "COLLISION" if collision else "SUCCESS"
+            if not collision and not metrics['colregs_compliant']:
+                status += f" (COLREGs: {metrics['colregs_violations']} violations)"
+
             ax.set_xlabel('X Position (m)', fontsize=11, fontweight='bold')
             ax.set_ylabel('Y Position (m)', fontsize=11, fontweight='bold')
             ax.set_title(f'{method} - {status}', fontsize=13, fontweight='bold')
@@ -412,4 +440,5 @@ if __name__ == "__main__":
     print("\nNew features:")
     print("  ✓ Collision detection")
     print("  ✓ Real-time metrics display on plots")
+    print("  ✓ COLREGs compliance tracking")
     print("  ✓ Path length, efficiency, and timing metrics")

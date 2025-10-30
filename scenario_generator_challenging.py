@@ -31,6 +31,12 @@ class ChallengeScenarioBuilder:
             return ChallengeScenarioBuilder._maze_scenario(difficulty)
         elif name == 'crowded':
             return ChallengeScenarioBuilder._crowded_scenario(difficulty)
+        elif name == 'colregs_headon':
+            return ChallengeScenarioBuilder._colregs_headon_scenario()
+        elif name == 'colregs_crossing':
+            return ChallengeScenarioBuilder._colregs_crossing_scenario()
+        elif name == 'colregs_overtaking':
+            return ChallengeScenarioBuilder._colregs_overtaking_scenario()
         else:
             raise ValueError(f"Unknown scenario: {name}")
     
@@ -310,3 +316,33 @@ class ChallengeScenarioBuilder:
             static_obs.append(Obstacle(x, y, r))
         
         return start, goal, static_obs, []
+    
+    @staticmethod
+    def _colregs_headon_scenario() -> tuple:
+        """Head-on encounter – Rule 14"""
+        start = (0.0, 0.0)
+        goal = (12.0, 0.0)
+        static_obs = []
+        # Oncoming vessel from opposite direction
+        dynamic_obs = [DynamicObstacle(12.0, 0.0, 0.6, vx=-0.8, vy=0.0)]
+        return start, goal, static_obs, dynamic_obs
+
+    @staticmethod
+    def _colregs_crossing_scenario() -> tuple:
+        """Crossing situation – Rule 15"""
+        start = (0.0, 0.0)
+        goal = (12.0, 0.0)
+        static_obs = []
+        # Vessel crossing from starboard to port
+        dynamic_obs = [DynamicObstacle(6.0, -6.0, 0.6, vx=0.0, vy=0.8)]
+        return start, goal, static_obs, dynamic_obs
+
+    @staticmethod
+    def _colregs_overtaking_scenario() -> tuple:
+        """Overtaking situation – Rule 13"""
+        start = (0.0, 0.0)
+        goal = (12.0, 0.0)
+        static_obs = []
+        # Slower vessel ahead
+        dynamic_obs = [DynamicObstacle(4.0, 0.2, 0.6, vx=0.3, vy=0.0)]
+        return start, goal, static_obs, dynamic_obs

@@ -1,4 +1,0 @@
-mode,scenario,difficulty,trial_id,success,collision,steps,path_length,path_smoothness,min_clearance,planning_cpu_time,num_obstacles
-Online_APF,clutter,easy,0,True,False,98,11.660599470112636,2.8109703838941553,0.5221343467019088,0.0062923431396484375,12
-Online_APF,clutter,easy,1,True,False,98,11.660599470112636,2.8109703838941553,0.5221343467019088,0.0021469593048095703,12
-Online_APF,clutter,easy,2,True,False,98,11.660599470112636,2.8109703838941553,0.5221343467019088,0.002178192138671875,12

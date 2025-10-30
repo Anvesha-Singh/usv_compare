@@ -1,3 +1,0 @@
-scenario,trials,success_rate,collision_rate,avg_colregs_corrections,avg_colregs_violations
-USA_MEC-1_20190115_T-13,10,1.0,0.0,20.0,0.0
-USA_NYM-1_20190613_T-1,10,1.0,0.0,7.0,21.0
